@@ -2,6 +2,16 @@
 
 namespace http_requests;
 
+/**
+ * Class HttpFile
+ * @package http_requests
+ *
+ * @property bool $isExists
+ * @property int $size
+ * @property int $timeModified
+ * @property string $hash
+ * @property string $mimeType
+ */
 class HttpFile extends HttpRequest {
 
 	/**
@@ -22,6 +32,34 @@ class HttpFile extends HttpRequest {
 	 */
 	public function getIsExists() {
 		return (200 == $this->attributes()->getHttpCode());
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getSize() {
+		return $this->attributes()->getContentLength();
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getTimeModified() {
+		return $this->attributes()->getLastModified();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getHash() {
+		return $this->attributes()->getETag();
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMimeType() {
+		return $this->attributes()->getContentType();
 	}
 
 	/**
