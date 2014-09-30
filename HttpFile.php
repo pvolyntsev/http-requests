@@ -150,6 +150,7 @@ class HttpFile extends HttpRequest {
 
 		$http_code = -1;
 		try {
+			$context['response'] = $response = curl_exec($curl);
 			$context['http_code'] = $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 			$context['info'] = $info = curl_getinfo($curl);
 			$context['error'] = $error = curl_error($curl);
@@ -174,6 +175,11 @@ class HttpFile extends HttpRequest {
 
 		self::$_stats['count']++;
 		self::$_stats['time'] += microtime(true) - $startTime;
+
+		if (isset($httpException))
+		{
+			throw $httpException;
+		}
 
 		return true;
 	}
