@@ -91,6 +91,10 @@ class HttpFile extends HttpRequest {
 		curl_setopt($curl, CURLOPT_HEADER, $context['CURLOPT_HEADER'] = true);
 		curl_setopt($curl, CURLOPT_FILETIME, $context['CURLOPT_FILETIME'] = true);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, $context['CURLOPT_RETURNTRANSFER'] = true);
+		if ($this->username)
+		{
+			curl_setopt($curl, CURLOPT_USERPWD, $context['CURLOPT_USERPWD'] = ($this->username . ":" . $this->password));
+		}
 
 		$response = '';
 		$http_code = -1;

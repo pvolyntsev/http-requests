@@ -49,6 +49,11 @@ class HttpRestClient extends HttpRequest
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, $context['CURLOPT_FOLLOWLOCATION'] = true);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, $context['CURLOPT_RETURNTRANSFER'] = true);
 
+		if ($this->username)
+		{
+			curl_setopt($curl, CURLOPT_USERPWD, $context['CURLOPT_USERPWD'] = ($this->username . ":" . $this->password));
+		}
+
 		$response = null;
 		$http_code = -1;
 		try

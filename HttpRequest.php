@@ -22,6 +22,18 @@ class HttpRequest extends \CComponent
 	 */
 	public $timeout = 10;
 
+	/**
+	 * Имя пользователя для авторизации
+	 * @var string
+	 */
+	public $username;
+
+	/**
+	 * Пароль пользователя для авторизации
+	 * @var string
+	 */
+	public $password;
+
 	protected static $_stats = array(
 		'count' => 0,
 		'time' => 0,
