@@ -46,7 +46,8 @@ class HttpRestClient extends HttpRequest
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, $context['CURLOPT_CONNECTTIMEOUT'] = $this->connectTimeout);
 		curl_setopt($curl, CURLOPT_TIMEOUT, $context['CURLOPT_TIMEOUT'] = $this->timeout);
 		curl_setopt($curl, CURLOPT_USERAGENT, $context['CURLOPT_USERAGENT'] = $this->userAgent);
-		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, $context['CURLOPT_FOLLOWLOCATION'] = true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, $context['CURLOPT_FOLLOWLOCATION'] = true); // переходить при переаддресациях
+		curl_setopt($curl, CURLOPT_AUTOREFERER, $context['CURLOPT_AUTOREFERER'] = true); // сохранять referrer при переаддресациях
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, $context['CURLOPT_RETURNTRANSFER'] = true);
 		if (true === $this->ssl_verify)
 		{

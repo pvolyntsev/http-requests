@@ -149,8 +149,10 @@ class HttpFile extends HttpRequest {
 		curl_setopt($curl, CURLOPT_URL, $context['CURLOPT_URL'] = $context['url'] = $this->_remoteFileUrl);
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, $context['CURLOPT_CONNECTTIMEOUT'] = $this->connectTimeout);
 		curl_setopt($curl, CURLOPT_TIMEOUT, $context['CURLOPT_TIMEOUT'] = 0); // чтобы получить большой файл, таймаут надо выключить
+		curl_setopt($curl, CURLOPT_TIMEOUT, $context['CURLOPT_TIMEOUT'] = 0); // чтобы получить большой файл, таймаут надо выключить
 		curl_setopt($curl, CURLOPT_USERAGENT, $context['CURLOPT_USERAGENT'] = $this->userAgent);
-		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, $context['CURLOPT_FOLLOWLOCATION'] = true);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, $context['CURLOPT_FOLLOWLOCATION'] = true); // переходить при переаддресациях
+		curl_setopt($curl, CURLOPT_AUTOREFERER, $context['CURLOPT_AUTOREFERER'] = true); // сохранять referrer при переаддресациях
 		if (true === $this->ssl_verify)
 		{
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $context['CURLOPT_SSL_VERIFYPEER'] = 1);
