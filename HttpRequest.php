@@ -34,6 +34,30 @@ class HttpRequest extends \CComponent
 	 */
 	public $password;
 
+	/**
+	 * Проверять ли подлинность удалённого хоста с использованием сертификатов SSL
+	 * @var bool|null
+	 */
+	public $ssl_verify;
+
+	/**
+	 * Путь к ключу для проверки подлинности сертификата SSL
+	 * @var string|null
+	 */
+	public $ssl_certificate;
+
+	/**
+	 * Пароль к ключу для проверки подлинности сертификата SSL
+	 * @var string|null
+	 */
+	public $ssl_certificate_password;
+
+	/**
+	 * Путь к файлу со списком доверенных центров проверки подлинности сертификатов SSL
+	 * @var string|null
+	 */
+	public $ssl_cainfo;
+
 	protected static $_stats = array(
 		'count' => 0,
 		'time' => 0,

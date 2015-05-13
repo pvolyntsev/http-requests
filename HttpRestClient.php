@@ -48,6 +48,17 @@ class HttpRestClient extends HttpRequest
 		curl_setopt($curl, CURLOPT_USERAGENT, $context['CURLOPT_USERAGENT'] = $this->userAgent);
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, $context['CURLOPT_FOLLOWLOCATION'] = true);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, $context['CURLOPT_RETURNTRANSFER'] = true);
+		if (true === $this->ssl_verify)
+		{
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $context['CURLOPT_SSL_VERIFYPEER'] = 1);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $context['CURLOPT_SSL_VERIFYHOST'] = 2);
+			if ($this->ssl_certificate)
+				curl_setopt($curl, CURLOPT_CAINFO, $context['CURLOPT_CAINFO'] = $this->ssl_certificate);
+		} elseif (false===$this->ssl_verify)
+		{
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $context['CURLOPT_SSL_VERIFYPEER'] = false);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $context['CURLOPT_SSL_VERIFYHOST'] = false);
+		}
 
 		if ($this->username)
 		{

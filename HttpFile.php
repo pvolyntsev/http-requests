@@ -151,6 +151,23 @@ class HttpFile extends HttpRequest {
 		curl_setopt($curl, CURLOPT_TIMEOUT, $context['CURLOPT_TIMEOUT'] = 0); // чтобы получить большой файл, таймаут надо выключить
 		curl_setopt($curl, CURLOPT_USERAGENT, $context['CURLOPT_USERAGENT'] = $this->userAgent);
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, $context['CURLOPT_FOLLOWLOCATION'] = true);
+		if (true === $this->ssl_verify)
+		{
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $context['CURLOPT_SSL_VERIFYPEER'] = 1);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $context['CURLOPT_SSL_VERIFYHOST'] = 2);
+			if ($this->ssl_certificate)
+			{
+				curl_setopt($curl, CURLOPT_SSLCERT, $context['CURLOPT_SSLCERT'] = $this->ssl_certificate);
+				if ($this->ssl_certificate_password)
+					curl_setopt($curl, CURLOPT_SSLCERTPASSWD, $context['CURLOPT_SSLCERTPASSWD'] = $this->ssl_certificate_password);
+			}
+			if ($this->ssl_cainfo)
+				curl_setopt($curl, CURLOPT_CAINFO, $context['CURLOPT_CAINFO'] = $this->ssl_cainfo);
+		} elseif (false===$this->ssl_verify)
+		{
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $context['CURLOPT_SSL_VERIFYPEER'] = false);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, $context['CURLOPT_SSL_VERIFYHOST'] = false);
+		}
 
 		$http_code = -1;
 		try {
