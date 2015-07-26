@@ -10,6 +10,11 @@ class HttpException extends \Exception {
 	{
 		$this->_context = $context;
 	}
+	
+	public function getContext()
+	{
+		return $this->_context;
+	}
 
 	public function getRequestHeaders()
 	{
