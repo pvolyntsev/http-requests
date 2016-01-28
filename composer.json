@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-0": {
-      "http_requests\\":".",
+      "http_requests\\":"."
     }
   }
 }
