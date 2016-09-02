@@ -49,6 +49,7 @@ class HttpRestClient extends HttpRequest
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, $context['CURLOPT_FOLLOWLOCATION'] = true); // переходить при переаддресациях
 		curl_setopt($curl, CURLOPT_AUTOREFERER, $context['CURLOPT_AUTOREFERER'] = true); // сохранять referrer при переаддресациях
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, $context['CURLOPT_RETURNTRANSFER'] = true);
+		curl_setopt($curl, CURLOPT_ENCODING, $context['CURLOPT_ENCODING'] = "gzip"); // Get GZip encoded response and decode it
 		if (true === $this->ssl_verify)
 		{
 			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $context['CURLOPT_SSL_VERIFYPEER'] = 1);
