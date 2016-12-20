@@ -2,7 +2,7 @@
 
 namespace http_requests;
 
-class HttpRequest extends \CComponent
+class HttpRequest
 {
 	/**
 	 * Строка идентификатора агента
@@ -63,12 +63,15 @@ class HttpRequest extends \CComponent
 		'time' => 0,
 	);
 
-	protected $_context;
+	/**
+	 * @var array
+	 */
+	public $context;
 
 	/**
 	 * @var HttpHeaders
 	 */
-	protected $_headers;
+	public $headers;
 
 	public function getFileHeaders($url)
 	{

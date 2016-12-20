@@ -7,7 +7,7 @@ class HttpRestClient extends HttpRequest
 	public function call($url, $method = 'GET', $data = null, $headers = array())
 	{
 		$startTime = microtime(true);
-		$context = &$this->_context;
+		$context = &$this->context;
 		$context = array();
 
 		$context['method'] = $method = strtoupper(trim($method));
