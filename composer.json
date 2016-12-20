@@ -1,15 +1,19 @@
 {
-  "name": "pvolyntsev/yii-http-requests",
+  "version": "2.0",
+  "name": "pvolyntsev/http-requests",
   "description": "HTTP utilities to work with remote servers: call REST services (GET/POST/PUT/DELETE), check and download files and other",
-  "type": "yii-extension",
+  "type": "extension",
   "keywords": [
-    "Yii",
     "component",
     "REST client",
     "HTTP",
-    "curl"
+    "curl",
+    "GET",
+    "PUT",
+    "POST",
+    "DELETE"
   ],
-  "homepage": "https://github.com/pvolyntsev/yii-http-requests",
+  "homepage": "https://github.com/pvolyntsev/http-requests",
   "license": "MIT",
   "require": {
     "php": ">=5.3.0"
