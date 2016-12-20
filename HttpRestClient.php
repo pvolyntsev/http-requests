@@ -114,7 +114,7 @@ class HttpRestClient extends HttpRequest
 			isset($urlOptions['query']) ? $this->_queryStringToArray($urlOptions['query']) : array(),
 			$this->_queryStringToArray($data)
 		);
-		$queryString = $this->_arrayToQueryString($query);
+		$queryString = http_build_query($query);
 
 		list($baseUrl,) = explode('?', $baseUrl);
 		return $baseUrl . (!empty($queryString) ? '?' . $queryString : '');
@@ -130,29 +130,7 @@ class HttpRestClient extends HttpRequest
 		{
 			return $queryString;
 		}
-		$result = array();
-		$dataPairs = explode('&', $queryString);
-		foreach ($dataPairs as $pair)
-		{
-			if (empty($pair))
-				continue;
-			list($name, $value) = explode('=', $pair);
-			# TODO name[]=value
-			# TODO name[index]=value
-			$result[urldecode($name)] = urldecode($value);
-		}
-		return $result;
-	}
-
-	protected function _arrayToQueryString($array)
-	{
-		$dataPairs = array();
-		foreach ($array as $name => $value)
-		{
-			# TODO name[]=value
-			# TODO name[index]=value
-			$dataPairs[] = implode('=', array(urlencode($name), urlencode($value)));
-		}
-		return implode('&', $dataPairs);
+		parse_str($queryString, $queryVars);
+		return $queryVars;
 	}
 }
